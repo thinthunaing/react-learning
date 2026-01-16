@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+  margin:0;
+  font-family: "Inter", sans-serif;
+  color:white;
+  background: #27292c
+}
+
+.header{
+  background-color: #21222A;
+  padding:  1rem 2rem;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+ 
+}
+
+.nav-icon{
+  width: 28.93px;
+}
+
+.nav-title{
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #61DAFB;
+}
+
+main{
+  padding: 3rem 2rem;
+
+  background-image: url(/assets/react-icon-large.png);
+  background-repeat: no-repeat;
+  background-position: right 70%;
+}
+
+main h1{
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+.facts-list {
+    margin-top: 46px;
+    max-width: 400px;
+   
+}
+
+.facts-list > li {
+    padding-block: 10px;
+    line-height: 19px;
+}
+
+.facts-list > li::marker {
+    color: #61DAFB;
+    font-size: 1.5rem;
+}
