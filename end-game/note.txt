@@ -34,3 +34,22 @@
      -start new game
   
   
+-saved guess letter lesson
+ => simply get the letter that user click from keyboard(button)
+ => Set onClick handler on key button and get clicked letter using event.target.innerText
+      
+      function handleKey(event){
+        const letter = event.target.innerText;
+        setGuessLetters(
+          //Prevented duplicate letters in state
+        prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter])
+      }
+
+    Option (2)
+    get clicked letter by passing letter to handlerKey function
+
+    function handleKey(letter){
+      setGuessLetters(
+        //Prevented duplicate letters in state
+      prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter])
+    }

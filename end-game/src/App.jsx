@@ -18,6 +18,7 @@ function App() {
   })
 
    const [currendyWord, setCurrentWord] = useState("accomplish");
+   const [guessLetters, setGuessLetters] = useState([]);
 
    const wordArray = currendyWord.split("");
    const word = wordArray.map( (letter,index)=>{
@@ -33,12 +34,18 @@ function App() {
   const alphabetArray = alphabet.split("");
   const keyboard = alphabetArray.map((letter)=>{
     return(
-      <button key={letter} className='key-button'>
+      <button key={letter} className='key-button' onClick={()=>handleKey(letter)}>
         {letter.toUpperCase()}
       </button>
     )
   })
 
+  function handleKey(letter){
+    setGuessLetters(
+      prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter]
+    )
+  }
+  console.log(guessLetters)
 
   return (
     <>
