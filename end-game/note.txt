@@ -1,0 +1,36 @@
+
+  Project planning:
+  
+  Questions to ask yourself before writing any code:
+  
+  - What are the main containers of elements I need
+    in this app?
+
+    
+      -heading
+      -game status container (win/lose)
+      -the languages container
+      -the word container
+      -keyboard
+      -new game if game is over
+  
+   - What values will need to be saved in state vs.
+    what values can be derived from the state?
+ 
+     -saved in state
+       correct word
+       user input word
+       guess count 
+
+     -derived from state
+       game status
+       which languages are eleminated
+       display blank
+  
+  - How will the user interact with the app? What
+    events do I need to handle?
+     
+     -keyboard event
+     -start new game
+  
+  
