@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import {languages} from './language.js'
 
@@ -14,6 +15,17 @@ function App() {
       </span>
     )
   })
+
+   const [currendyWord, setCurrentWord] = useState("accomplish");
+
+   const wordArray = currendyWord.split("");
+   const word = wordArray.map( letter=>{
+    return(
+      <span key={letter} className='letter-box'>
+        {letter.toUpperCase()}
+      </span>
+    )
+   })
   return (
     <>
       <header>
@@ -27,6 +39,9 @@ function App() {
       </section>
       <section className='language-chip'>
         {language}
+      </section>
+      <section className='word-container'>
+        {word}
       </section>
      
     </>
