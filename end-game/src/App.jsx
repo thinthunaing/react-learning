@@ -20,12 +20,13 @@ function App() {
 
    const [currentWord, setCurrentWord] = useState("accomplish");
    const [guessLetters, setGuessLetters] = useState([]);
+   
 
    const wordArray = currentWord.split("");
    const word = wordArray.map( (letter,index)=>{
     return(
       <span key={index} className='letter-box'>
-        {letter.toUpperCase()}
+        {guessLetters.includes(letter) ? letter.toUpperCase() : ''}
       </span>
     )
    })
