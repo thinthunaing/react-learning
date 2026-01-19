@@ -133,3 +133,6 @@ header > p{
     font-weight: 600;
     cursor: pointer;
 }
+
+.correct { background: green; }
+.wrong { background: red; }
