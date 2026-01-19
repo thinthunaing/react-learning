@@ -21,6 +21,13 @@ function App() {
    const [currentWord, setCurrentWord] = useState("accomplish");
    const [guessLetters, setGuessLetters] = useState([]);
    
+  let wrongGuessCount = 0;
+
+   guessLetters.map((letter)=>{
+     currentWord.includes(letter) ?  wrongGuessCount : wrongGuessCount++;
+   })
+
+   console.log(wrongGuessCount);
 
    const wordArray = currentWord.split("");
    const word = wordArray.map( (letter,index)=>{
@@ -59,8 +66,7 @@ function App() {
       prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter]
     )
   }
-  console.log(guessLetters)
-
+  
   return (
     <>
     <div className="assembly-app"> 
