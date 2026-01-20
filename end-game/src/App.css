@@ -76,6 +76,21 @@ header > p{
     padding: 0.5em;
     border-radius: 3px;
     font-weight: 600;
+    position: relative;
+}
+
+.chip.lost::before {
+    content: "💀";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 0.85rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .word-container{

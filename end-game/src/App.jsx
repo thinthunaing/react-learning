@@ -5,18 +5,7 @@ import {languages} from './language.js'
 
 function App() {
 
-  // Language Chips
-  const language = languages.map((lang)=>{
-    const style = {
-      backgroundColor: lang.backgroundColor,
-      color: lang.color,
-    }
-    return(
-      <span key={lang.name} style={style} className='chip'>
-        {lang.name}
-      </span>
-    )
-  })
+ 
 
    const [currentWord, setCurrentWord] = useState("accomplish");
    const [guessLetters, setGuessLetters] = useState([]);
@@ -37,6 +26,27 @@ function App() {
       </span>
     )
    })
+
+    // Language Chips
+  const language = languages.map((lang, index)=>{
+    const style = {
+      backgroundColor: lang.backgroundColor,
+      color: lang.color,
+    }
+    let isEliminated = index < wrongGuessCount;
+
+    const className = clsx(
+      "chip",{
+        lost: isEliminated
+      }
+    )
+
+    return(
+      <span key={lang.name} style={style} className={className}>
+        {lang.name}
+      </span>
+    )
+  })
 
   //keyboard
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
