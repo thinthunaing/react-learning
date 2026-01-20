@@ -23,6 +23,8 @@ function App() {
   const isGameLost = wrongGuessCount >= maxWrongGuesses;
   const isGameOver = isGameWon || isGameLost;
 
+  console.log("isGameWon:", isGameWon);
+
    
   //word display
   const wordArray = currentWord.split("");
@@ -92,6 +94,13 @@ function App() {
       prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter]
     )
   }
+
+  let className=clsx(
+      "game-status",{
+      correct: isGameWon,
+      wrong: isGameLost
+    }
+    )
   
   return (
     <>
@@ -101,10 +110,10 @@ function App() {
       <p>Guess the word in under 8 attempts to keep 
          the programming world safe from Assembly!</p>
       </header>
-      <section className='game-status'>
-        <h2>You win!</h2>
-        <p>Well done! 🎉</p>
-      </section>
+      {isGameOver && <section className={className}>
+        <h2>{isGameWon ? "You Win!" : "You Lose!"}</h2>
+        <p>{isGameWon ? "Well done! 🎉" : "You lose! Better learning Assembly!"}</p>
+      </section>}
       <section className='language-chip'>
         {language}
       </section>
