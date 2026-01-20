@@ -5,29 +5,36 @@ import {languages} from './language.js'
 
 function App() {
 
- 
 
+  //state values
    const [currentWord, setCurrentWord] = useState("accomplish");
    const [guessLetters, setGuessLetters] = useState([]);
    
+   //derived values
   let wrongGuessCount = 0;
 
-   guessLetters.map((letter)=>{
+  guessLetters.map((letter)=>{
      currentWord.includes(letter) ?  wrongGuessCount : wrongGuessCount++;
    })
 
-   console.log(wrongGuessCount);
+  const maxWrongGuesses = languages.length-1;
+  const isGameWon = currentWord.split("").every( (letter) => guessLetters.includes(letter) );
 
-   const wordArray = currentWord.split("");
-   const word = wordArray.map( (letter,index)=>{
+  const isGameLost = wrongGuessCount >= maxWrongGuesses;
+  const isGameOver = isGameWon || isGameLost;
+
+   
+  //word display
+  const wordArray = currentWord.split("");
+  const word = wordArray.map( (letter,index)=>{
     return(
       <span key={index} className='letter-box'>
         {guessLetters.includes(letter) ? letter.toUpperCase() : ''}
       </span>
     )
-   })
+  })
 
-    // Language Chips
+  // Language Chips
   const language = languages.map((lang, index)=>{
     const style = {
       backgroundColor: lang.backgroundColor,
@@ -48,11 +55,20 @@ function App() {
     )
   })
 
+
   //keyboard
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
   const alphabetArray = alphabet.split("");
-  const keyboard = alphabetArray.map((letter)=>{
   
+  const keyboard = alphabetArray.map((letter)=>{
+    
+    if(isGameOver){
+      return(
+        <button key={letter} className="key-button" disabled>
+          {letter.toUpperCase()}
+        </button>
+      )
+    }
     const isGuessed = guessLetters.includes(letter);
     const isCorrect = isGuessed && currentWord.includes(letter);
     const isWrong = isGuessed && !currentWord.includes(letter);
@@ -98,7 +114,7 @@ function App() {
       <section className='keyboard-container'>
         {keyboard}
       </section>
-      <button className='new-game'>New Game</button>
+      {isGameOver && <button className='new-game'>New Game</button>}
     </div>
     </>
   )
