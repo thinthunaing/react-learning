@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {clsx} from 'clsx';
 import './App.css'
 import {languages} from './language.js'
+import {getFarewellText} from './utils.js';
 
 function App() {
 
@@ -23,8 +24,11 @@ function App() {
   const isGameLost = wrongGuessCount >= maxWrongGuesses;
   const isGameOver = isGameWon || isGameLost;
 
-  console.log("isGameWon:", isGameWon);
+  const farewellMessages = [];
+  const lastGuessedLetter = guessLetters[guessLetters.length - 1]
+  const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
+  
    
   //word display
   const wordArray = currentWord.split("");
@@ -36,6 +40,7 @@ function App() {
     )
   })
 
+  
   // Language Chips
   const language = languages.map((lang, index)=>{
     const style = {
@@ -43,6 +48,7 @@ function App() {
       color: lang.color,
     }
     let isEliminated = index < wrongGuessCount;
+    isEliminated && farewellMessages.push(lang.name);
 
     const className = clsx(
       "chip",{
@@ -98,9 +104,42 @@ function App() {
   let className=clsx(
       "game-status",{
       correct: isGameWon,
-      wrong: isGameLost
+      wrong: isGameLost,
+      farewell : !isGameOver && isLastGuessIncorrect
     }
     )
+
+  //game status display
+
+  function renderGameStatus() {
+
+         
+      if (!isGameOver && isLastGuessIncorrect) {
+            const message = getFarewellText(farewellMessages.join(','));
+            return (
+                <p className="farewell-message">{message}</p>
+            )
+        }
+
+        if (isGameWon) {
+            return (
+                <>
+                    <h2>You win!</h2>
+                    <p>Well done! 🎉</p>
+                </>
+            )
+        } if (isGameLost) {
+            return (
+                <>
+                    <h2>Game over!</h2>
+                    <p>You lose! Better start learning Assembly 😭</p>
+                </>
+            )
+        }
+      
+          
+        }
+    
   
   return (
     <>
@@ -110,10 +149,9 @@ function App() {
       <p>Guess the word in under 8 attempts to keep 
          the programming world safe from Assembly!</p>
       </header>
-      {isGameOver && <section className={className}>
-        <h2>{isGameWon ? "You Win!" : "You Lose!"}</h2>
-        <p>{isGameWon ? "Well done! 🎉" : "You lose! Better learning Assembly!"}</p>
-      </section>}
+      <section className={className}>
+        {renderGameStatus()}
+      </section>
       <section className='language-chip'>
         {language}
       </section>
