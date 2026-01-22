@@ -102,6 +102,11 @@ function App() {
     )
   }
 
+  function handleNewGame(){
+    setCurrentWord(generateRandomWord());
+    setGuessLetters([]);
+  }
+
   let className=clsx(
       "game-status",{
       correct: isGameWon,
@@ -184,7 +189,7 @@ function App() {
       <section className='keyboard-container'>
         {keyboard}
       </section>
-      {isGameOver && <button className='new-game'>New Game</button>}
+      {isGameOver && <button className='new-game' onClick={handleNewGame}>New Game</button>}
     </div>
     </>
   )
