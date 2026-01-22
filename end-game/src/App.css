@@ -164,6 +164,7 @@ header > p{
 .wrong { background-color: red; }
 .farewell {  background-color: #7A5EA7;
     border: 1px dashed #323232; }
+.revealed { color: #ec5d49;}
 
 .sr-only {
     position: absolute;

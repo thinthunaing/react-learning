@@ -32,9 +32,15 @@ function App() {
   //word display
   const wordArray = currentWord.split("");
   const word = wordArray.map( (letter,index)=>{
+    const revealLetter = isGameLost || guessLetters.includes(letter);
+    const letterClassName = clsx(
+      "letter-box",{
+        revealed: isGameLost && !guessLetters.includes(letter)
+      }
+    )
     return(
-      <span key={index} className='letter-box'>
-        {guessLetters.includes(letter) ? letter.toUpperCase() : ''}
+      <span key={index} className={letterClassName}>
+        { revealLetter ? letter.toUpperCase() : "" }
       </span>
     )
   })
@@ -70,15 +76,15 @@ function App() {
   const keyboard = alphabetArray.map((letter)=>{
     
   
-    const isGuessed = guessLetters.includes(letter);
-    const isCorrect = isGuessed && currentWord.includes(letter);
-    const isWrong = isGuessed && !currentWord.includes(letter);
+  const isGuessed = guessLetters.includes(letter);
+  const isCorrect = isGuessed && currentWord.includes(letter);
+  const isWrong = isGuessed && !currentWord.includes(letter);
 
-    let className=clsx(
-        "key-button",{
-        correct: isCorrect,
-        wrong: isWrong
-      }
+  let className=clsx(
+      "key-button",{
+      correct: isCorrect,
+      wrong: isWrong
+    }
       )
 
     return(
