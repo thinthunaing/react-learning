@@ -3,22 +3,21 @@ import {clsx} from 'clsx';
 import './App.css'
 import {languages} from './language.js'
 import {getFarewellText} from './utils.js';
+import {generateRandomWord} from './utils.js';
 
 function App() {
 
 
   //state values
-   const [currentWord, setCurrentWord] = useState("accomplish");
+   const [currentWord, setCurrentWord] = useState(() => generateRandomWord());
    const [guessLetters, setGuessLetters] = useState([]);
    
    //derived values
-  let wrongGuessCount = 0;
+  const wrongGuessCount = guessLetters.filter((letter => !currentWord.includes(letter))).length;
+  const guessesLeft = languages.length - 1;
 
-  guessLetters.map((letter)=>{
-     currentWord.includes(letter) ?  wrongGuessCount : wrongGuessCount++;
-   })
 
-  const maxWrongGuesses = languages.length-1;
+  const maxWrongGuesses = guessesLeft;
   const isGameWon = currentWord.split("").every( (letter) => guessLetters.includes(letter) );
 
   const isGameLost = wrongGuessCount >= maxWrongGuesses;
@@ -70,13 +69,7 @@ function App() {
   
   const keyboard = alphabetArray.map((letter)=>{
     
-    if(isGameOver){
-      return(
-        <button key={letter} className="key-button" disabled>
-          {letter.toUpperCase()}
-        </button>
-      )
-    }
+  
     const isGuessed = guessLetters.includes(letter);
     const isCorrect = isGuessed && currentWord.includes(letter);
     const isWrong = isGuessed && !currentWord.includes(letter);
@@ -89,8 +82,16 @@ function App() {
       )
 
     return(
-      <button key={letter} className={className} onClick={()=>handleKey(letter)}>
-        {letter.toUpperCase()}
+      <button 
+        key={letter} 
+        className={className} 
+        onClick={()=>handleKey(letter)} 
+        disabled={isGameOver} 
+        aria-disabled={guessLetters.includes(letter)}
+        aria-label={`Letter ${letter}`}>
+        
+      {letter.toUpperCase()}
+
       </button>
     )
   })
@@ -149,7 +150,11 @@ function App() {
       <p>Guess the word in under 8 attempts to keep 
          the programming world safe from Assembly!</p>
       </header>
-      <section className={className}>
+      <section 
+          className={className}
+          aria-live="polite"
+          role='status'
+      >
         {renderGameStatus()}
       </section>
       <section className='language-chip'>
@@ -157,6 +162,24 @@ function App() {
       </section>
       <section className='word-container'>
         {word}
+      </section>
+      <section
+        className='sr-only'
+        aria-live="polite"
+        role='status'
+      >
+        <p>
+          {currentWord.includes(lastGuessedLetter) ?
+            `Correct! The letter "${lastGuessedLetter}" is in the word.` :
+            `Sorry, the letter "${lastGuessedLetter}" is not in the word.`
+          }
+         You have {maxWrongGuesses - wrongGuessCount} guesses left.
+        </p>
+        <p> Current words : 
+          {currentWord.split("").map(letter => 
+              guessLetters.includes(letter) ? letter: "blank")
+              .join("")}
+        </p>
       </section>
       <section className='keyboard-container'>
         {keyboard}

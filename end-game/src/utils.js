@@ -1,3 +1,10 @@
+import {words} from './words.js';
+
+export function generateRandomWord() {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+}
+
 export function getFarewellText(language) {
     const options = [
         `Farewell, ${language}`,
