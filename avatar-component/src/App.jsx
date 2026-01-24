@@ -1,5 +1,6 @@
 import './App.css'
-import { User } from "lucide-react";
+import bob from './images/bob.jpg';
+import Avatar from './Avatar'
 
 /**
  * Challenge: Create a flexible Avatar component!
@@ -25,11 +26,26 @@ import { User } from "lucide-react";
  * color classes to add to the wrapper div.
  */
 
-export default function Avatar() {
+export default function App() {
     return (
-        <h2 className='avatar '>
-            
-          <User size={24} />
-        </h2>
+        <main>
+          <Avatar>
+            BZ
+          </Avatar>
+          <Avatar>
+            BZ
+          </Avatar>
+          <Avatar>
+            BZ
+          </Avatar>
+          <Avatar>
+            <img 
+              src={bob}
+              alt="Bob avatar" 
+            />
+          </Avatar>
+         <Avatar/> 
+         <Avatar/> 
+        </main>
     )
 }

@@ -13,6 +13,10 @@
 body {
     background-color: #2F2F2F;
 }
+main{
+  display: flex;
+  align-items: center;
+}
 
 .avatar {
     height: 150px;
@@ -40,8 +44,8 @@ body {
 }
 
 .avatar-icon {
-    /* background-color: var(--navy); */
-    background-color: white;
+    background-color: var(--navy);
+    
 }
 
 .avatar > svg {
