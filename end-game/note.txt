@@ -53,3 +53,18 @@
         //Prevented duplicate letters in state
       prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter])
     }
+
+- keyboard letter style for gueeses
+
+the guess letter is not in the correct, the key turn green color
+the guess letter is wrong, the key turn red color
+
+in this lesson, I know about clsx package for constructing className strings conditionally
+
+- farewell display
+I got farewell language from eleminated logic in language chips and I put this eleminated
+language to array and show this languages by joining this array child in render status function
+
+I don't know what is the condition for showing farewell language at first. I do !isGameOver condition 
+for showing farewell message but it gots purple background since game start
+When I saw lecture, I notice that the farewell message should display when user guess the wrong letter.

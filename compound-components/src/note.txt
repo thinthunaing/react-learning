@@ -1,0 +1,7 @@
+This lesson is to explain the props drilling problem, props drilling is about 
+when child component need some info from its neighbour or lower, react does not allow it 
+so you need to move this info to upper ones, that can happen props drilling 
+
+To explain this, we have
+1. compound component
+2. react context

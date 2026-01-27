@@ -1,9 +1,9 @@
-import React from "react"
+import { useState , Children, cloneElement } from "react"
 
 
 export default function Menu({ children}) {
   
-    const [open, setOpen] = React.useState(true)
+    const [open, setOpen] = useState(true)
 
     function toggle() {
         setOpen(prevOpen => !prevOpen)
@@ -11,7 +11,14 @@ export default function Menu({ children}) {
 
     return (
         <div className="menu">
-            {children}
+           {Children.map( children,
+           child => {
+
+             return cloneElement(child, {
+                open,
+                toggle
+             })
+           })}
         </div>
     )
 }
