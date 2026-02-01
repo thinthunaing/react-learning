@@ -2,9 +2,9 @@ import { useContext } from "react"
 import { MenuContext } from "./Menu.jsx"
 
 export default function MenuDropdown({ children}) {
-    const { open } = useContext(MenuContext);
+    const { open, menuId } = useContext(MenuContext);
     return (
-        open ? (<div className="menu-dropdown">
+        open ? (<div className="menu-dropdown" id={menuId}>
             {children}
         </div>) : null
     )
