@@ -7,7 +7,7 @@ export default function({children}) {
 
     function toggle(){
         setOn(prevOn => !prevOn);
-        console.log("Toggled:", !on);
+        
     }
 
     return (

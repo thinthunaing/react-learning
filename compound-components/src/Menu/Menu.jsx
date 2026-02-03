@@ -12,33 +12,21 @@
  * `useId` is used to generate a unique id so the button and dropdown
  * can be correctly linked for accessibility (ARIA).
  */
-
-
-
-import { useState , createContext, useId } from "react"
-
-const MenuContext = createContext();
+import Toggle from "../Toggle/Toggle"
 
 export default function Menu({ children}) {
   
-    const [open, setOpen] = useState(true)
-    const menuId = useId();
-
-    function toggle() {
-        setOpen(prevOpen => !prevOpen)
-    }
-
-   
-
     return (
-        <MenuContext.Provider value={{ open, toggle, menuId }}>
+      <Toggle>
         <div className="menu" role="menu">
            {children}
         </div>
-        </MenuContext.Provider>
+      </Toggle>
     )
 }
 
-export { MenuContext };
+  
+
+
        
 
