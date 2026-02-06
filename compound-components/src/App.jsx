@@ -38,6 +38,7 @@ export default function App() {
       
        <Toggle>
         <ToggleButton>
+          {/* Using Toggle.Display for the render props */}
           <ToggleDisplay>
 
             {(on) => (
