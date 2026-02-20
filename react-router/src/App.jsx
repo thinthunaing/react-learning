@@ -23,7 +23,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/vans" element={<Vans />} />
-        <Route path="/vans/:id/:type" element={<Van />} />
+        <Route path="/vans/:id" element={<Van />} />
       </Routes>
     </BrowserRouter>
   )
