@@ -11,6 +11,7 @@ import Income from "./pages/Host/Income"
 import Reviews from "./pages/Host/Reviews"
 
 import Layout from "./components/Layout"
+import HostLayout from "./components/HostLayout"
 
 import "./server"
 
@@ -24,9 +25,10 @@ export default function App() {
           <Route path="/vans" element={<Vans />} />
           <Route path="/vans/:id" element={<Van />} />
         </Route>
-        <Route element={<Dashboard />} path="/host">
-          <Route path="income" element={<Income />} />
-          <Route path="reviews" element={<Reviews />} />
+        <Route path="/host" element={<HostLayout />}>
+          <Route path="/host" element={<Dashboard/>} />
+          <Route path="/host/income" element={<Income />} />
+          <Route path="/host/reviews" element={<Reviews />} />
         </Route>
       </Routes>
     </BrowserRouter>
