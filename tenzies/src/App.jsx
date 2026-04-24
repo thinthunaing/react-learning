@@ -21,7 +21,7 @@ function App() {
     return newDice
   }
 
-  const [dice, setDice] = useState( generateAllNewDice() )
+  const [dice, setDice] = useState( () => generateAllNewDice() )
   const gameWon = dice.every( die => die.isHeld ) && dice.every( die => die.value === dice[0].value )
   const newGameButtonRef = useRef(null);
 
@@ -47,6 +47,8 @@ useEffect(() => {
       newGameButtonRef.current.focus();
     }
   }, [gameWon]);
+
+  
   function holdDie(id) {
     setDice( prev => prev.map( die => {
       return die.id === id ? {...die, isHeld: !die.isHeld} : die
