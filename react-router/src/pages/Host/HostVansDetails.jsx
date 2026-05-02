@@ -58,7 +58,7 @@ export default function(){
                         Photos
                     </NavLink>
                 </nav>
-            <Outlet/>
+            <Outlet context={{currentVan}}/>
         </section>
     )
 }
