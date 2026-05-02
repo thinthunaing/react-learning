@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import { useParams,Link } from "react-router-dom"
+import { useParams,Link, Outlet, NavLink} from "react-router-dom"
 
 export default function(){
     const [currentVan, setCurrentVan] = useState(null)
@@ -36,6 +36,29 @@ export default function(){
                     </div>
                 </div>
             </div>
+
+             <nav className="host-van-detail-nav">
+                    <NavLink
+                        to="."
+                        end
+                        className={({ isActive }) => isActive ? "my-link" : null}
+                    >
+                        Details
+                    </NavLink>
+                    <NavLink
+                        to="pricing"
+                        className={({ isActive }) => isActive ? "my-link" : null}
+                    >
+                        Pricing
+                    </NavLink>
+                    <NavLink
+                        to="photos"
+                        className={({ isActive }) => isActive ? "my-link" : null}
+                    >
+                        Photos
+                    </NavLink>
+                </nav>
+            <Outlet/>
         </section>
     )
 }
