@@ -1,10 +1,10 @@
 import {useState, useEffect} from "react"
 import { useParams,Link, Outlet, NavLink} from "react-router-dom"
 
+
 export default function(){
     const [currentVan, setCurrentVan] = useState(null)
     const {id} = useParams()
-
     useEffect(
         () => {
             fetch(`/api/host/vans/${id}`)
@@ -12,6 +12,8 @@ export default function(){
                 .then(data => setCurrentVan(data.vans))
         }, [id]
     )
+
+   
 
     if(!currentVan) return <h2>Loading...</h2>
 
