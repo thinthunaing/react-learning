@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Vans from "./pages/Vans/Vans"
 import Van from "./pages/Vans/Van"
+import NotFound from "./pages/notFound"
 
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
@@ -41,7 +42,9 @@ export default function App() {
             </Route>
             
             <Route path="reviews" element={<Reviews />} />
+
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
