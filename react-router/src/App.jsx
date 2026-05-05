@@ -6,6 +6,7 @@ import About from "./pages/About"
 import Vans from "./pages/Vans/Vans"
 import Van from "./pages/Vans/Van"
 import NotFound from "./pages/notFound"
+import Login from "./pages/Login"
 
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
@@ -18,6 +19,7 @@ import HostVansPricing from "./pages/Host/HostVansPricing"
 
 import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
+import AuthRequired from "./components/AuthRequired"
 
 import "./server"
 
@@ -25,6 +27,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route element={<AuthRequired />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
@@ -45,6 +49,7 @@ export default function App() {
 
           </Route>
           <Route path="*" element={<NotFound />} />
+        </Route>
         </Route>
       </Routes>
     </BrowserRouter>

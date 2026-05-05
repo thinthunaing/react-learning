@@ -7,17 +7,32 @@ export default function Vans(){
 
     const [vans,setVans] = useState([])
     const [searchParams, setSearchParams] = useSearchParams()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null)
 
     useEffect(()=>{
-        async function loadVans(){
+        async function loadVans() {
             setLoading(true)
-            const data = await getVans()    
-            setVans(data)
-            setLoading(false)
+            try {
+                const data = await getVans()
+                setVans(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
         }
+
         loadVans()
     },[])
+
+    if (loading) {
+    return <h2>Loading...</h2>
+  }
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>
+  }
 
     const typeFilter = searchParams.get("type")
 
@@ -56,10 +71,8 @@ export default function Vans(){
         
     }
 
-    if(loading){
-        return <h2>Loading...</h2>
-    }
 
+    
     return (
         <div className='van-list-container'>
             <h1>Explore our vans options</h1>
